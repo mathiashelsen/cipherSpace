@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "util/serverSide.hpp"
+#include <sys/wait.h>
 
 void echoPlusOne(
     void *args, // Arguments that the user can specify
@@ -13,8 +14,9 @@ int main(int argc, char **argv)
     serverSide myServer = serverSide(atoi(argv[1]), &echoPlusOne);
     myServer.start();
 
-    wait();
-
+    printf("Waiting...\n");
+    while( wait(0) != -1);
+    printf("Done waiting, exiting\n");
     return(0);
 }
 

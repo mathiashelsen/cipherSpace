@@ -32,9 +32,10 @@ serverSide::~serverSide()
 
 void serverSide::start(void)
 {
-    int pid = 0;
+    int pid = fork(); //This little piggy will always listen, while we get to do other stuff in this program
     if(pid == 0)
     {
+        printf("im the little piggy that has to listen for new clients\n");
         while(true)
         {
             listen(sockfd,5);
@@ -43,9 +44,10 @@ void serverSide::start(void)
                 (struct sockaddr *) &cli_addr, 
                 &clilen);
             printf("Accepting...\n");
-            pid = fork();
+            pid = fork(); // This little piggy has to answer to one specific clietn
             if(pid == 0)
             {
+                printf("Im the little piggy for a specific client\n");
                 if (newsockfd < 0) 
                     printf("ERROR on accept");
                 bzero(buffer,256);
@@ -54,10 +56,12 @@ void serverSide::start(void)
                 //mtx.lock();
                 callBackFunction(NULL, buffer, this);
                 //mtx.unlock();
+                printf("Going to die now!\n");
+                _exit(0);
             }
         }
     }else{
-        wait();
+        printf("Im going to do other stuff\n");
     }
 }
 
