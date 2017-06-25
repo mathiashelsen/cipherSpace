@@ -8,7 +8,7 @@
 #include <sys/types.h> 
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <mutex>
+//#include <mutex>
 
 /*
  * This will start a server that listens on a specified port.
@@ -25,16 +25,19 @@ class serverSide
         struct sockaddr_in serv_addr, cli_addr;
         int n;
         void *callBackArgs;
-        std::mutex mtx; // To protect the callBackArgs
+        //std::mutex mtx; // To protect the callBackArgs
+        void (* callBackFunction)(
+            void *args, // Arguments that the user can specify
+            char *msg,  // Message received by the server
+            serverSide *server);
     public:
-        serverSide(int portno, void (* callbackFunction)(
+        serverSide(int _portno, void (* _callBackFunction)(
             void *args, // Arguments that the user can specify
             char *msg,  // Message received by the server
             serverSide *server) );
         ~serverSide();
-        int start();
-        int readMsg(int nBytes, char *msg);
-        int writeMsg(char *msg);
+        void start();
+        int sendMessage(char *msg);
 };
 
 #endif

@@ -58,7 +58,7 @@
 ##==========================================================================
 
 # The pre-processor and compiler options.
-MY_CFLAGS = -Wall
+MY_CFLAGS = -Wall -std=c++11
 
 # The linker options.
 MY_LIBS   = -pthread -lm -lpthread
