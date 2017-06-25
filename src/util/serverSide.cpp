@@ -43,7 +43,7 @@ void serverSide::start(void)
                 (struct sockaddr *) &cli_addr, 
                 &clilen);
             printf("Accepting...\n");
-            pid = vfork();
+            pid = fork();
             if(pid == 0)
             {
                 if (newsockfd < 0) 
