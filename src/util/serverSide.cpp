@@ -22,6 +22,7 @@ serverSide::serverSide(int _portno,
               sizeof(serv_addr)) < 0) 
               printf("ERROR on binding");
     callBackFunction = _callBackFunction;
+    callBackArgs = NULL;
 }
 
 serverSide::~serverSide()
@@ -51,7 +52,7 @@ void serverSide::start(void)
                 n = read(newsockfd,buffer,255);
                 if (n < 0) printf("ERROR reading from socket");
                 //mtx.lock();
-                callBackFunction(NULL, buffer, this);
+                callBackFunction(callBackArgs, buffer, this);
                 //mtx.unlock();
                 _exit(0);
             }

@@ -42,6 +42,7 @@ class serverSide
         int sendMessage(char *msg);
         int recvMessage(char *msg, int nBytes);
         void terminate();
+        void setCallBackArgs(void *args) {callBackArgs = args; };
 };
 
 #endif
