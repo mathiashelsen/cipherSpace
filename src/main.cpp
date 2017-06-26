@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "util/serverSide.hpp"
+#include "util/clientSide.hpp"
 #include <sys/wait.h>
 
 void echoPlusOne(
@@ -12,7 +13,9 @@ void echoPlusOne(
 int main(int argc, char **argv)
 {
     bool looping = true;
+    int socket = 0;
     serverSide myServer = serverSide(atoi(argv[1]), &echoPlusOne);
+    clientSide myClient = clientSide();
     myServer.start();
 
     printf("Server initialized successfully.\n Please enter command\n ");
@@ -26,7 +29,9 @@ int main(int argc, char **argv)
         switch(command)
         {
             case 'c':
-                printf("Going to connect\n");
+                printf("Please enter portnumber: ");
+                scanf("%d", &socket);
+                myClient.connectClient(socket);
                 break;
             case 'q':
                 printf("Going to quit\n");

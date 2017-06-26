@@ -18,10 +18,9 @@ class clientSide
         struct sockaddr_in serv_addr;
         struct hostent *server;
     public:
-        clientSide(int _portno, 
-            char *_hostname
-            );
+        clientSide();
         ~clientSide();
+        void connectClient(int _portno);
         int sendMessage(char *msg);
         int recvMessage(char *msg, int nBytes);
 };

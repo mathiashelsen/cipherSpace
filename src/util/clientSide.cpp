@@ -1,12 +1,17 @@
 #include "clientSide.hpp"
 
-clientSide::clientSide(int _portno, char *_hostname)
+clientSide::clientSide()
+{
+
+}
+
+void clientSide::connectClient(int _portno)
 {
     portno = _portno;
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd < 0) 
         printf("ERROR opening socket");
-    server = gethostbyname(_hostname);
+    server = gethostbyname("localhost");
     if (server == NULL) {
         fprintf(stderr,"ERROR, no such host\n");
         exit(0);
