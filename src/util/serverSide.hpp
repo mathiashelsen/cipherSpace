@@ -8,6 +8,7 @@
 #include <sys/types.h> 
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <signal.h>
 //#include <mutex>
 
 /*
@@ -20,6 +21,7 @@ class serverSide
 {
     private:
         int sockfd, newsockfd, portno;
+        pid_t childPID = 0;
         socklen_t clilen;
         char buffer[256];
         struct sockaddr_in serv_addr, cli_addr;
@@ -38,6 +40,8 @@ class serverSide
         ~serverSide();
         void start();
         int sendMessage(char *msg);
+        int recvMessage(char *msg, int nBytes);
+        void terminate();
 };
 
 #endif

@@ -11,10 +11,36 @@ void echoPlusOne(
 
 int main(int argc, char **argv)
 {
+    bool looping = true;
     serverSide myServer = serverSide(atoi(argv[1]), &echoPlusOne);
     myServer.start();
 
-    printf("Waiting...\n");
+    printf("Server initialized successfully.\n Please enter command\n ");
+
+    while(looping)
+    {
+        printf("    > ");
+        char command = 0;
+        scanf("%c", &command);
+
+        switch(command)
+        {
+            case 'c':
+                printf("Going to connect\n");
+                break;
+            case 'q':
+                printf("Going to quit\n");
+                looping = false;
+                break;
+            default:
+                // None
+                break;
+        }
+    }
+    
+    
+    myServer.terminate();
+
     while( wait(0) != -1);
     printf("Done waiting, exiting\n");
     return(0);
