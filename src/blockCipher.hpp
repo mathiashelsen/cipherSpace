@@ -1,7 +1,7 @@
-#ifndef _CIPHER_HPP
-#define _CIPHER_HPP
+#ifndef _BLOCKCIPHER_HPP
+#define _BLOCKCIPHER_HPP
 
-class cipher
+class blockCipher
 {
 
 	public:
