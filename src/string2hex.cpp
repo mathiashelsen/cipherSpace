@@ -54,7 +54,6 @@ char* hex_to_bin(const std::string& input, int *len)
 		std::string byteStr = input.substr(i, 2);
 		j = 0;
 		retVal = sscanf(byteStr.c_str(), "%x", &j);
-		printf("%s : %d, ", byteStr.c_str(), j);
 		if( j < 255)
 			 output[i/2] = j;
 	}

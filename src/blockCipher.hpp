@@ -1,6 +1,8 @@
 #ifndef _BLOCKCIPHER_HPP
 #define _BLOCKCIPHER_HPP
 
+#include <cstddef>
+
 class blockCipher
 {
 
