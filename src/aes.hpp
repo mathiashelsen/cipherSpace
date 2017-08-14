@@ -77,8 +77,8 @@ class aes : public blockCipher
 		uint32_t 	roundKey[Nb*(Nr+1)];
 		uint8_t		key[Nk];
 		uint8_t		rotByte(uint8_t, int);
-		uint32_t	rotByte(uint32_t, int);
-		uint32_t	subByte(uint32_t);
+		uint32_t	rotWord(uint32_t, int);
+		uint32_t	subWord(uint32_t);
 	public:
 		std::string	printRoundKeys(void);
 		std::string	printKey(void);
