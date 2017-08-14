@@ -67,7 +67,7 @@ const uint8_t rcon[256] =
 	};
 
 // Only correction for AES-128
-const int Nk = 16;
+const int Nk = 4;
 const int Nr = 10;
 const int Nb = 4;
 
