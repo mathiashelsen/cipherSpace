@@ -75,7 +75,7 @@ class aes : public blockCipher
 {
 	private:
 		uint32_t 	roundKey[Nb*(Nr+1)];
-		uint8_t		key[Nk];
+		uint8_t		key[Nk*4];
 		uint8_t		rotByte(uint8_t, int);
 		uint32_t	rotWord(uint32_t, int);
 		uint32_t	subWord(uint32_t);
