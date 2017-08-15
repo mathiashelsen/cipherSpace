@@ -85,3 +85,24 @@ std::string aes::printKey(void)
 
     return output;
 }
+
+int     aes::encryptBlock(uint32_t *msg)
+{
+    for(int j = 0; j < Nb; j++)
+    {
+        msg[j] = (msg[j] ^ roundKey[j]);
+
+    }
+
+    for(int i = 1; i < Nr; i++)
+    {
+        for(int j = 0; j < Nb; j++)
+        {
+            msg[j] = subWord(msg[j])
+        }
+        
+    }
+    
+
+    return 0;
+}

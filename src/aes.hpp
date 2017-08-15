@@ -79,6 +79,7 @@ class aes : public blockCipher
         uint8_t     rotByte(uint8_t, int);
         uint32_t    rotWord(uint32_t, int);
         uint32_t    subWord(uint32_t);
+        int         encryptBlock(uint32_t *msg); //In place encryption of a single 128-bit block
     public:
         std::string printRoundKeys(void);
         std::string printKey(void);
