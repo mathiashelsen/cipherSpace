@@ -42,21 +42,21 @@ std::string hex_to_string(const std::string& input)
 
 char* hex_to_bin(const std::string& input, int *len)
 {
-	size_t length = input.length();
+    size_t length = input.length();
     if (length & 1) throw std::invalid_argument("odd length");
 
-	char *output = new char[length/2];
-	unsigned int j = 0;
-	char retVal = 0;
-	*len = length/2;
-	for( size_t i = 0; i < length; i+= 2)
-	{
-		std::string byteStr = input.substr(i, 2);
-		j = 0;
-		retVal = sscanf(byteStr.c_str(), "%x", &j);
-		if( j < 255)
-			 output[i/2] = j;
-	}
+    char *output = new char[length/2];
+    unsigned int j = 0;
+    char retVal = 0;
+    *len = length/2;
+    for( size_t i = 0; i < length; i+= 2)
+    {
+        std::string byteStr = input.substr(i, 2);
+        j = 0;
+        retVal = sscanf(byteStr.c_str(), "%x", &j);
+        if( j < 255)
+             output[i/2] = j;
+    }
 
-	return output;
+    return output;
 }
