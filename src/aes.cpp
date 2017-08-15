@@ -86,19 +86,49 @@ std::string aes::printKey(void)
     return output;
 }
 
+int     aes::shiftRow(uint32_t *msg)
+{
+    uint32_t tmp[4];
+    for(int i = 1; i < 4; i++)
+    {
+        for(int j = 0; j < i; j++)
+        {
+            tmp[j] = msg[4*i+j];
+        }
+
+        for(int j = 0; j < 4-i; j++)
+        {
+            msg[4*i+j] = msg[4*i+j+i];
+        }
+        
+        for(int j = 4-i; j < 4; j++)
+        {
+            msg[4*i+j] = tmp[j-4+i];
+        }
+    }
+    return 0;
+}
+
 int     aes::encryptBlock(uint32_t *msg)
 {
     for(int j = 0; j < Nb; j++)
     {
         msg[j] = (msg[j] ^ roundKey[j]);
-
     }
 
     for(int i = 1; i < Nr; i++)
     {
         for(int j = 0; j < Nb; j++)
         {
-            msg[j] = subWord(msg[j])
+            msg[j] = subWord(msg[j]);
+        }
+
+        shiftRow(msg);
+        mixCol(msg);
+
+        for(int j = 0; j < Nb; j++)
+        {
+            msg[j] = msg[j] ^ roundKey[j];
         }
         
     }

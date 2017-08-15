@@ -16,6 +16,21 @@ int main(int argc, char **argv)
     //aesCipher.setKey(hex_to_bin(std::string("00000000000000000000000000000000"), &i));
     cout << aesCipher.printKey() << endl;
     cout << aesCipher.printRoundKeys() << endl;
+
+    cout << endl << endl;
+
+    uint32_t test[16];
+    for(int i = 0; i < 16; i++)
+    {
+        test[i] = (uint32_t) i;
+    }
+
+    aesCipher.shiftRow(test);
+
+    for(int i = 0; i < 16; i++)
+    {
+        printf("%d ", test[i]);
+    }
     return(0);
 }
 
