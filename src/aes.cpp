@@ -86,10 +86,6 @@ std::string aes::printKey(void)
     return output;
 }
 
-int     aes::shiftRow(uint32_t *msg)
-{
-}
-
 int     aes::encryptBlock(uint32_t *msg)
 {
     for(int j = 0; j < Nb; j++)
@@ -101,10 +97,9 @@ int     aes::encryptBlock(uint32_t *msg)
     {
         for(int j = 0; j < Nb; j++)
         {
-            msg[j] = subWord(msg[j]);
+            msg[j] = rotWord(subWord(msg[j]), j);
         }
 
-        shiftRow(msg);
         mixCol(msg);
 
         for(int j = 0; j < Nb; j++)
